@@ -10,3 +10,8 @@ Useful when retrieving multiple hashed from miscellaneous sources and whant to t
 
 > [!IMPORTANT]
 > The option has been merged in both crackmapexec (not supported anymore) and in [NXC](https://www.netexec.wiki/smb-protocol/password-spraying) that is the actively manteined successor.
+
+---
+
+> [!TIP]
+> That script actually act differently from both previously mentioned solutions, since perform Kerberos Auth and in some restricted environment this actually bypass countermeasures of ban like [wail2ban](https://github.com/glasnt/wail2ban)
